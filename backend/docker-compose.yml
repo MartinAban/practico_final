@@ -1,10 +1,10 @@
 version: "3.8"
 services:
   # =========================
-  # USERS SERVICE (Auth)
+  # SERVICIO DE USUARIOS (Autenticación)
   # =========================
   users-service:
-    image: users-service:latest
+    image: users-service:${TAG:-latest}
     build: ./users-service
     container_name: users-service
     env_file:
@@ -15,10 +15,10 @@ services:
       - backend-net
 
   # =========================
-  # ACADEMIC SERVICE (Courses)
+  # SERVICIO ACADÉMICO (Cursos)
   # =========================
   academic-service:
-    image: academic-service:latest
+    image: academic-service:${TAG:-latest}
     build: ./academic-service
     container_name: academic-service
     env_file:
@@ -28,10 +28,10 @@ services:
     networks:
       - backend-net
   # =========================
-  # API GATEWAY
+  # API Gateway
   # =========================
   api-gateway:
-    image: api-gateway:latest
+    image: api-gateway:${TAG:-latest}
     build: ./api-gateway
     container_name: api-gateway
     ports:
@@ -43,9 +43,10 @@ services:
       - backend-net
 
   # =========================
-  # FRONTEND (React SPA)
+  # Frontend (SPA React)
   # =========================
   frontend:
+    image: frontend:${TAG:-latest}
     build: ../frontend    
     container_name: frontend
     ports:
