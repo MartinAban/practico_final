@@ -32,7 +32,8 @@ export default defineConfig([
         jest: 'readonly',
         describe: 'readonly',
         test: 'readonly',
-        expect: 'readonly'
+        expect: 'readonly',
+        require: 'readonly'
       }
     }
   }
