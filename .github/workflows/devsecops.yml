@@ -127,8 +127,8 @@ jobs:
       uses: docker/setup-buildx-action@v3
 
     - name: Build Docker images
-  run: |
-    docker compose -f backend/docker-compose.yml build --no-cache
+      run: |
+        docker compose -f backend/docker-compose.yml build --no-cache
 
     # =========================
     # 7. SCA – Trivy
@@ -136,21 +136,21 @@ jobs:
     - name: Trivy scan users-service
       uses: aquasecurity/trivy-action@0.20.0
       with:
-        image-ref: users-service:${{ env.TAG }}
+        image-ref: users-service:${{ github.sha }}
         severity: CRITICAL
         exit-code: 1
 
     - name: Trivy scan academic-service
       uses: aquasecurity/trivy-action@0.20.0
       with:
-        image-ref: academic-service:${{ env.TAG }}
+        image-ref: academic-service:${{ github.sha }}
         severity: CRITICAL
         exit-code: 1
 
     - name: Trivy scan api-gateway
       uses: aquasecurity/trivy-action@0.20.0
       with:
-        image-ref: api-gateway:${{ env.TAG }}
+        image-ref: api-gateway:${{ github.sha }}
         severity: CRITICAL
         exit-code: 1
 
