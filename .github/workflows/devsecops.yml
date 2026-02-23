@@ -127,8 +127,8 @@ jobs:
       uses: docker/setup-buildx-action@v3
 
     - name: Build Docker images
-      run: |
-        docker compose -f backend/docker-compose.yml build
+  run: |
+    docker compose -f backend/docker-compose.yml build --no-cache
 
     # =========================
     # 7. SCA – Trivy
